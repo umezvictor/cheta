@@ -1,0 +1,31 @@
+{
+  "name": "cheta",
+  "version": "1.0.0",
+  "description": "reminder app built with react and express",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "Victor Umezuruike",
+  "license": "MIT",
+  "dependencies": {
+    "async-waterfall": "^0.1.5",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "concurrently": "^4.1.0",
+    "cron": "^1.7.1",
+    "express": "^4.16.4",
+    "express-validator": "^5.3.1",
+    "gravatar": "^1.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^2.2.0",
+    "mongoose": "^5.5.4",
+    "mongoose-timestamp": "^0.6.0",
+    "node-cron": "^2.0.3",
+    "nodemailer": "^6.1.1",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  },
+  "dev

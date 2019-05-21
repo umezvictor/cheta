@@ -1,0 +1,60 @@
+work flow
+
+set up express
+connect to database
+create schema - Users, Admin, tasks, ovulation
+set up routes (use validator package) login, register with email activation, reset password, delete account, logout
+connect to react frontend
+
+main app tasks
+user logs in 
+adds a new task to the reminder list  -- title, time to be reminded
+update a task  
+mark completed
+delete task
+
+ovulation reminder
+set
+
+cron jobs
+
+send reminder via - sms, email and push  notifications
+
+backend
+bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
+    "express": "^4.16.3",
+    "gravatar": "^1.6.0",
+    "jsonwebtoken": "^8.2.0",
+    "mongoose": "^5.0.12",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^9.4.1"
+    express-validator
+
+
+
+frontend
+dependencies": {
+    "axios": "^0.18.0",
+    "classnames": "^2.2.5",
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.22.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-moment": "^0.7.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-thunk": "^2.2.0"
+
+"async-waterfall": "^0.1.5",
+    "axios": "^0.18.0",
+    
+    "mongoose": "^5.4.11",
+    "mongoose-timestamp": "^0.6.0",
+    "nodemailer": "^5.1.1",
+    "nodemailer-sendgrid-transport"
