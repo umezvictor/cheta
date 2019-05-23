@@ -1,4 +1,3 @@
-//rendering static pages
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
@@ -10,7 +9,7 @@ const crypto = require('crypto');//for generating random numbers, comes with nod
 const config = require ('../config/keys');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const jwtDecode = require('jwt-decode')
+const jwtDecode = require('jwt-decode');
 
 
 
@@ -276,7 +275,7 @@ router.post('/login', (req, res) => {
 
 //status 200 == ok, but something was not created
 //status 201 == ok, but something created
-
+//status 204 == ok, but something deleted
 
 // @route:  GET users/current
 // @description: find current user, return user that has the token
@@ -323,7 +322,7 @@ router.delete('/current/:id', passport.authenticate('jwt', {session: false}), as
 
     try {
         const deleteProfile = await User.findOneAndRemove({_id: req.params.id});
-       res.sendStatus(204);
+       res.status(200).json({msg: 'Your account has been deleted successfully'})
     } catch (error) {
         res.json({msg: 'Operation failed, please try again'});
     }

@@ -1,19 +1,17 @@
-//run npm run server for nodemon
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('./config/keys');
 const bodyParser = require('body-parser');
-const passport = require('passport');//for autherntication
-
-//const path = require('path');
+const passport = require('passport');
+const path = require('path');
+//const task = require('./cron_jobs/index');
 
 const app = express();
 
 
 //bodyparser
 app.use(bodyParser.json());
-//o speak from the heavens and i will Header from earth
-//my altar is calling you
+
 //connection string
 const db = config.MONGO_URI;
 
@@ -31,13 +29,24 @@ app.use(passport.initialize());
 require('./config/passport')(passport);//passport is a parameter, must be passport, don't know why yet
 
 //routes
-app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/items', require('./routes/items'));
-//app.use('/users', require('./routes/users'));
+
+
+
+//client setup. static folder. React is used for the frontend
+app.use(express.static('client/build'));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
+
+ 
+// cron job
+//task.start();
 
 //port
-const port = 5000;
+const port = process.env.PORT || 5000;//dev port or production port
 
 app.listen(port, () => {
     console.log(`server started on port ${port}`);

@@ -2,8 +2,6 @@
 when user logs in, a token is issued to him. That token will be sent in the header for every page he tries to
 access. The token will be verified and the id in it will be decoded. the system then finds the user with that id and 
 grants access if verified.
-
-In this route, the id will come from the id retrieved from the token issued at login
 */
 const express = require('express');
 const router = express.Router();
@@ -21,6 +19,11 @@ const passport = require('passport');
 // @route:  POST items/create/:id
 // @description: create new reminder item
 // @access: private
+/*
+the id here is the user id which can be obtained once the user
+ is logged in and verified, it will be passed as a parameter
+into the url
+*/
 
 router.post('/create/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
 
@@ -72,14 +75,93 @@ router.post('/create/:id', passport.authenticate('jwt', { session: false }), (re
     }  
 });
 
-
-// @route:  POST items/fetch/:id
-// @description: fetch items from db
+// @route:  GET items/fetch/:id
+// @description: get all items created by a particular user
 // @access: private
-//use the creatorId to get items unique to each user
-router.get('/fetch/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+/*
+the user id is also used here as above. here all items saved by the user are retrieved
+*/
+
+router.get('/fetch/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
     
+    const userId = req.params.id;
+    try {
+        //const userItems = await Items.findById({creatorId: req.params.id}); didn't work
+        const userItems = await Items.find().where('creatorId').equals(userId);
+        //where creatorId matches req.params.id
+        res.json(userItems);
+    } catch (error) {
+        res.json({msg: 'No item found'});
+    }
 });
+
+
+// @route:  get items/fetch/:id
+// @description: get single items 
+// @access: private
+/*
+when all items saved by user are retrieved, the id for each post will become available.
+you can use console.log() to see the json response when all items are retrieved as above.
+reference can now be made to the id for each item, and it is then used as the query string for this api call
+*/
+router.get('/fetch_item/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+    
+    const itemId = req.params.id;
+    try {
+        const item = await Items.findById({_id: itemId});
+        //const userItems = await Items.find().where('creatorId').equals(userId);
+        //where creatorId matches req.params.id
+        res.json(item);
+    } catch (error) {
+        res.json({msg: 'No item found'});
+    }
+});
+
+// @route:  Put items/fetch_item/:id
+// @description: update single items 
+// @access: private
+/*
+the item id is used as the query string for this api call
+*/
+
+router.put('/fetch_item/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+    //check if data is json type
+    if(!req.is('application/json')){
+       return res.json({msg: 'Only json format is supported'});
+    }
+
+    const itemId = req.params.id;
+    try {
+        //const updateItem = await Items.findByIdAndUpdate did not work
+        const updateItem = await Items.findOneAndUpdate({_id: itemId}, req.body, {new: true});
+        res.status(200).json({msg: 'Item updated successfully'});//ok 
+    } catch (error) {
+        res.json({msg: 'Update failed, try again'});
+    }
+});
+
+
+
+
+
+// @route:  DELETE items/fetch_item/:id
+// @description: delete single item from db
+// @access: private
+/*
+item id is used as the query parameter for this api call
+*/
+
+router.delete('/fetch_item/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+    
+    try {
+        const deleteItem = await Items.findOneAndRemove({_id: req.params.id}); 
+        //where creatorId matches req.params.id
+        res.json({msg: 'Item deleted successfully'});
+    } catch (error) {
+        res.json({msg: 'Update failed, try again'});
+    }
+});
+
 
 
 module.exports = router;
