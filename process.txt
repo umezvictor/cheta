@@ -12,49 +12,32 @@ adds a new task to the reminder list  -- title, time to be reminded
 update a task  
 mark completed
 delete task
+set ovulation date reminder
 
-ovulation reminder
-set
 
 cron jobs
 
 send reminder via - sms, email and push  notifications
 
-backend
-bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.2",
-    "concurrently": "^3.5.1",
-    "express": "^4.16.3",
-    "gravatar": "^1.6.0",
-    "jsonwebtoken": "^8.2.0",
-    "mongoose": "^5.0.12",
-    "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0",
-    "validator": "^9.4.1"
-    express-validator
+
+the mystery behind redux
+
+eg, login functionality
+
+Once the login button is clicked, the following happens
+
+1. the loginUser (located in authActions.js) action creator is fired, it calls the action type
+of SET_CURRENT_USER
+2. the authActions file dispatches the action created to the authReducer
+it uses SET_CURRENT_USER to let the reducer know what action what was taken and how to 
+determine the next state of the application. 
+Note: action types are the relationships between reducers and authActions
+
+3. the reducer updates the state of the application based on the action type and sends signal to the store
+
+4. the store is updated and the new state is made available to the frontend app
 
 
 
-frontend
-dependencies": {
-    "axios": "^0.18.0",
-    "classnames": "^2.2.5",
-    "jwt-decode": "^2.2.0",
-    "moment": "^2.22.0",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
-    "react-moment": "^0.7.0",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
-    "redux": "^3.7.2",
-    "redux-devtools-extension": "^2.13.5",
-    "redux-thunk": "^2.2.0"
-
-"async-waterfall": "^0.1.5",
-    "axios": "^0.18.0",
-    
-    "mongoose": "^5.4.11",
-    "mongoose-timestamp": "^0.6.0",
-    "nodemailer": "^5.1.1",
-    "nodemailer-sendgrid-transport"
+Note:
+redux-thunk middleware handles asynchronous actions in redux

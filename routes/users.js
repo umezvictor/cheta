@@ -27,23 +27,23 @@ router.post('/register', (req, res) => {
 
     //if fields are empty
     if(!firstname || !gender || !email || !phone || !password){
-        errors.push({ msg: 'all fields are required' });
+        errors.push({ all_err: 'all fields are required' });
     }
 
     if(password.length < 6){
-        errors.push({ msg: 'password field should be at least 6 characters' });
+        errors.push({ pwd_err: 'password field should be at least 6 characters' });
     }
 
 
     //validate phone number
     const phoneRegex = /^[0-9]+$/;
     if(phoneRegex.test(phone) === false){
-        errors.push({ msg: 'only numbers are allowed' })
+        errors.push({ phone_err: 'only numbers are allowed' })
     }
     //validate firstname
     const regex = /^[A-Za-z]+$/;
     if(regex.test(firstname) === false){
-        errors.push({ msg: 'only alphabets are allowed' })
+        errors.push({ name_err: 'only alphabets are allowed' })
     }
 
     //if errors exist
@@ -53,7 +53,7 @@ router.post('/register', (req, res) => {
          //no errors in input, check if user already exists
     User.findOne({ email: email }).then(user => {
         if(user){ 
-           errors.push({msg: 'user already exists'});
+           errors.push({user_exist_err: 'user already exists'});
            res.send(errors);
         } else {
            
@@ -247,7 +247,7 @@ router.post('/login', (req, res) => {
                 //create token 
                 
                   const token = jwt.sign(payload, config.JWT_SECRET, {
-                      expiresIn: 86400//expires in 24hrs
+                      expiresIn: 3600//86400, expires in 24hrs or 1 day//  3600s expires in 1hour
                   });
 
                 //   const decoded = jwtDecode(token);//decode token
