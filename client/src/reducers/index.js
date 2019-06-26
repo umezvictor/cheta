@@ -2,11 +2,11 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import errorReducer from './errorReducer';
-import itemReducer from './itemReducer';
+import itemsReducer from './itemsReducer';
 //add all the reducers here and export it
 //to access authreducers use this.props.auth
 export default combineReducers({
     auth: authReducer,
     errors: errorReducer,
-    item: itemReducer
+    items: itemsReducer
 });

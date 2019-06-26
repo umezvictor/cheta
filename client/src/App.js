@@ -19,6 +19,8 @@ import Signup from './components/auth/Signup';
 import Dashboard from './components/dashboard/Dashboard';
 
 import './App.css';
+import DisplayItems from './components/items/DisplayItems';
+import ViewItem from './components/items/ViewItem';
 
 /*
 token will be lost after page refresh
@@ -57,6 +59,8 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard/get_items" component={DisplayItems} />
+          <Route exact path="/dashboard/view_item/:id" component={ViewItem} />
         </div>
       </Router>
     </Provider>

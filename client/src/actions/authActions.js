@@ -3,7 +3,7 @@ import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken'; 
 import jwt_decode from 'jwt-decode';
 import { GET_ERRORS  } from './types';
-import { SET_CURRENT_USER, GET_CURRENT_USER  } from './types';
+import { SET_CURRENT_USER} from './types';
 
 
 /*
@@ -82,22 +82,7 @@ send token along whenver a request is made to a protected route
  };
 
 
- //get current user
- export const getCurrentUser = () => dispatch => {
-     axios.get('/users/current')
-        .then(res => 
-            dispatch({
-                type: GET_CURRENT_USER,
-                payload: res.data
-            })
-            )
-        .catch(err => 
-            dispatch({
-                type: GET_ERRORS,
-                payload: err.response.data
-            })
-            );
- }
+
 
 
  //logout user

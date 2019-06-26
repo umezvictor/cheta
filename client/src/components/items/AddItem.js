@@ -2,60 +2,81 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addItem } from '../../actions/itemActions';
+// import Flatpickr from 'react-flatpickr';
+// import 'flatpickr/dist/themes/material_green.css'
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+//import moment from 'moment';
+
 
 
 
  class AddItem extends Component {
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             title: '',
             details: '',
-            remindMeBy: '',
+            remindMeBy: new Date(),
             errors: {}
         }
         this.onInputChange = this.onInputChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
+      
     }
 
     
 
-    //enable input fields
+    // //enable input fields
     onInputChange(e){
-        e.preventDefault();
         this.setState({[e.target.name]: e.target.value});
-    }
+    };
+
+    handleChange(date){
+    // console.log(date); 
+        this.setState({remindMeBy: date});
+    };
 
     //triger addItem action 
     onFormSubmit(e){
-        e.preventDefault();
+       e.preventDefault();
+        
         //create items objects
         const item = {
-            
-            
             title: this.state.title,
             details: this.state.details,
             remindMeBy: this.state.remindMeBy    
         };
 
-        this.props.addItem(item);
+        this.props.addItem(item, this.props.auth.user.id);
+        
     }
     
     
     render() {
-        const { user } = this.props.auth;
-        const { item } = this.props.item;
+        
+       
+        
         return (
             <div>
-                <h1>Add Item</h1>
+                <h1>Add an item</h1>
                
-               <form onSubmit={this.onFormSubmit}>
+               <form>
               
-                   <input name="title" type="text" placeholder="title" value={this.state.title} onChange={this.onInputChange}/> <br /><br />
+               <input name="title" type="text" placeholder="title" value={this.state.title} onChange={this.onInputChange}/> <br /><br />
                    <input name="details" type="text" placeholder="details" value={this.state.email} onChange={this.onInputChange}/> <br /><br />
-                   <input name="remindMeBy" type="date" value={this.state.phone} onChange={this.onInputChange}/> <br /><br />
-                   <input type="submit" value="Add Item"/>
+                   <DatePicker 
+                    selected={ this.state.remindMeBy}
+                   onChange={this.handleChange } 
+                    name="remindMeBy"
+                    showTimeSelect
+                    timeFormat='HH:mm'
+                    dateFormat='MMMM d, yyyy h:mm aa'
+                    
+                   /><br /><br />
+                   <button type="submit" onClick={this.onFormSubmit}>Add Item</button>
                </form>
             </div>
         )
@@ -65,12 +86,29 @@ import { addItem } from '../../actions/itemActions';
 AddItem.propTypes = {
     addItem: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    item: PropTypes.object.isRequired
+    items: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
     auth: state.auth,
-    item: state.item
+    items: state.items
 });
 
 export default connect(mapStateToProps, { addItem })(AddItem);
+
+/*
+
+ return (
+            <div>
+                <h1>Add an item</h1>
+               
+               <form>
+              
+                   <input name="title" type="text" placeholder="title" value={this.state.title} onChange={this.onInputChange}/> <br /><br />
+                   <input name="details" type="text" placeholder="details" value={this.state.email} onChange={this.onInputChange}/> <br /><br />
+                   <Flatpickr name="remindMeBy" data-enable-time value={remindMeBy} onChange={remindMeBy => { this.setState({remindMeBy}) }} /><br /><br />
+                   <button type="submit" onClick={this.onFormSubmit}>Add Item</button>
+               </form>
+            </div>
+        )
+*/

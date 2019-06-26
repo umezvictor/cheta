@@ -4,7 +4,7 @@ const config = require('./config/keys');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
-//const task = require('./cron_jobs/index');
+const task = require('./cron_jobs/index');
 
 const app = express();
 

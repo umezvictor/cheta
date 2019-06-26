@@ -20,7 +20,7 @@ const ItemSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now()
+        default: new Date()
     },
     title: {
         type: String,
@@ -28,11 +28,10 @@ const ItemSchema = new mongoose.Schema({
     },
     details: {
         type: String,
-        default: ""
+        required: true//set a default value later
     },
     remindMeBy: {
         type: Date,
-        default: null,
         required: true
     },
     completed: {

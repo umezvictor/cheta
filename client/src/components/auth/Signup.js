@@ -150,7 +150,9 @@ Signup.propTypes = {
 
 //to get the state (auth state in this case) use the function below
 const mapStateToProps = (state) => ({
-    auth: state.auth,//first auth is just a property, could be anything; second auth here comes from the name used in the root reducer; accessed via this.props.auth
+    auth: state.auth,
+    //first auth is just a property, could be anything; second auth here 
+    //comes from the name used in the root reducer; accessed via this.props.auth
     errors: state.errors
 });
 

@@ -118,7 +118,7 @@ router.get('/fetch_item/:id', passport.authenticate('jwt', {session: false}), as
 });
 
 // @route:  Put items/fetch_item/:id
-// @description: update single items 
+// @description: update single item
 // @access: private
 /*
 the item id is used as the query string for this api call
@@ -144,14 +144,14 @@ router.put('/fetch_item/:id', passport.authenticate('jwt', {session: false}), as
 
 
 
-// @route:  DELETE items/fetch_item/:id
+// @route:  DELETE items/delete_item/:id
 // @description: delete single item from db
 // @access: private
 /*
 item id is used as the query parameter for this api call
 */
 
-router.delete('/fetch_item/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.delete('/delete_item/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
     
     try {
         const deleteItem = await Items.findOneAndRemove({_id: req.params.id}); 

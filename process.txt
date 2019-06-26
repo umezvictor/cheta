@@ -41,3 +41,11 @@ Note: action types are the relationships between reducers and authActions
 
 Note:
 redux-thunk middleware handles asynchronous actions in redux
+
+
+cron functionality 
+
+1. sending email notifications
+
+check due time --
+send email remainder to user on due time
