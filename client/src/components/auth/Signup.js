@@ -10,6 +10,9 @@ import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';//action triggered when a user registers
 //any action brought in can be referenced through props
 
+//css
+import '../../assets/css/main.css';
+
 class Signup extends Component {
 
     /*
@@ -124,16 +127,16 @@ class Signup extends Component {
         //const { errors } = this.state;
         
         return (
-            <div>
-                <h1>Signup here</h1>
-               
+            <div className="signup-form">
                 <form onSubmit={this.onFormSubmit}>
-                <input name="firstname" type="text" placeholder="firstname" value={this.state.firstname} onChange={this.onInputChange}/> <br /><br />
-                    <input name="gender" type="text" placeholder="gender" value={this.state.gender} onChange={this.onInputChange}/> <br /><br />
-                    <input name="email" type="email" placeholder="email" value={this.state.email} onChange={this.onInputChange}/> <br /><br />
-                    <input name="phone" type="text" placeholder="phone number" value={this.state.phone} onChange={this.onInputChange}/> <br /><br />
-                    <input name="password" type="password" placeholder="password" value={this.state.password} onChange={this.onInputChange}/> <br /><br />
-                    <input type="submit" value="Signup"/>
+                <h1>Create an account</h1>
+                <input className="textinput" name="firstname" type="text" placeholder="firstname" value={this.state.firstname} onChange={this.onInputChange}/> 
+                    <input className="textinput"  name="gender" type="text" placeholder="gender" value={this.state.gender} onChange={this.onInputChange}/> 
+                    <input className="textinput" name="email" type="email" placeholder="email" value={this.state.email} onChange={this.onInputChange}/> 
+                    <input className="textinput" name="phone" type="text" placeholder="phone number" value={this.state.phone} onChange={this.onInputChange}/> 
+                    <input className="textinput" name="password" type="password" placeholder="password" value={this.state.password} onChange={this.onInputChange}/> 
+                    <input className="signup-btn" type="submit" value="Signup"/>
+                    <span>Already have an account?  </span><a href="/login">login</a>
                 </form>
             </div>
         )

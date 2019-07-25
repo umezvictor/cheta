@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import AddItems from '../items/AddItem';
 
 
  class Dashboard extends Component {
 
     
     render() {
+       
         //auth reducer contains isAuthenticated and user object
         const { user } = this.props.auth;
 
         return (
             <div>
                 <h1>Welcome {user.firstname}</h1>
-                <AddItems />
+               
+                <Link className="nav-link" to="/dashboard/add_item">Create Reminder</Link>
                 <Link className="nav-link" to="/dashboard/get_items">View Items</Link>
             </div>
         )

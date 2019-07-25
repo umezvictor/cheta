@@ -1,0 +1,366 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+/* @import url('https://fonts.googleapis.com/css?family=Rajdhani&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css?family=Dancing+Script|Rajdhani&display=swap'); */
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+/* font-family: 'Dancing Script', cursive;  flatuicolors.com/palette/defo*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html, body {
+    /* font-family: 'Rajdhani', sans-serif; */
+    /* font-family: 'Dancing Script', cursive; */
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.7em;
+    background: #f1c40f;
+}
+
+
+
+
+/*utility*/
+.mycontainer {
+    margin: auto;
+    max-width: 1100px;
+    overflow: auto;
+    padding: 0 20px;
+}
+
+/*navbar*/
+.mynav {
+    background: #fff;
+    color: #000;
+    overflow: auto;
+}
+
+.mynav a {
+    color: #04A777;
+    text-decoration: none;
+}
+
+.mynav a:hover{
+    color: #D78521;
+}
+
+.mynav h1 {
+    float: left;
+    padding-top: 20px;
+    
+}
+
+.mynav ul {
+    list-style: none;
+    float: right;
+}
+
+.mynav ul li {
+    float: left;
+}
+
+
+.mynav ul li a{
+    display: block;
+    padding: 20px;
+    text-align: center;
+}
+
+
+
+.mynav .logo a{
+    color: #04A777;
+    text-decoration: none;;
+}
+
+/*showcase in home.js*/
+.showcase {
+display: flex;
+flex-wrap: wrap;
+align-content: center;
+
+}
+
+
+.intro-text-left{
+    
+    height: 400px;
+    padding-top: 40px;
+    background: none;
+    margin: 10px;
+    text-align: center; /* centers the button */
+}
+.intro-image-right{
+    
+    height: 300px;
+   
+}
+
+
+.intro-text-left h1{
+    font-size: 30px;
+    color:#04A777;
+    text-decoration: none;;
+    
+    
+    margin-bottom: 10px; 
+} 
+
+.intro-text-left p {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px; 
+    margin-bottom: 30px;
+}
+
+
+
+.intro-image-right img{
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+}
+ 
+
+
+.btn{
+    display: inline-block;
+    font-size: 18px;
+    color:#fff;
+    text-decoration: none;
+    background: #04A777;
+    padding:  13px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background: #D78521;
+    color: #333;
+}
+
+  
+  /* Tablet Styles */
+  @media only screen and (min-width: 401px) and (max-width: 960px) {
+    .showcase{
+        display: flex;
+    }
+    .intro-image-right{
+        width: 100%;
+        height: 400px;
+        margin-top: 10px;
+       
+
+    }
+    .intro-image-right img{
+        height: 400px;
+        
+    }
+    .intro-text-left{
+        width: 100%;
+        
+    }
+  }
+  
+  /* Desktop layout */
+  @media only screen and (min-width: 961px){
+    .showcase{
+        display: flex; 
+        height: 100vh;
+        flex-wrap: nowrap;
+        background:none;
+
+         
+    }
+    
+   
+    .intro-image-right{
+       height: 450px; 
+       flex-basis: 45%;
+       
+    }
+    .intro-image-right img{
+        height: 450px;
+        width: 100%;
+    }
+
+    .intro-text-left{
+        flex-basis: 55%;
+        height: 450px;
+    }
+
+    .intro-text-left h1{
+        font-size: 20px;
+        color:#000;
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 10px; 
+    } 
+    
+    .intro-text-left p {
+        font-size: 20px;
+        text-align: center;
+        padding: 10px;
+        margin-top: 40px; 
+    }
+  }
+ 
+ 
+
+  /* features section */
+  .features{
+      background: #f1f1f1;
+      text-align: center;
+      margin-bottom: 30px;
+  }
+
+  .features h1{
+      display: inline-block;
+      text-transform: uppercase;
+      border-bottom: 4px solid #D78521;
+      font-size: 20px;
+      padding-bottom: 10px;
+      margin-top: 40px;
+  }
+
+  .cen{
+      max-width: 1200px;
+      margin: auto;
+      overflow: hidden;
+      padding: 20px;
+  }
+
+  .feature{
+      display: inline-block;
+      width: calc(100% / 3);
+      margin: 0 -2px;
+      padding:20px;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: 0.4s;
+  }
+
+  .feature:hover{
+      /* background: #ddd; <i class="fa fa-mobile" aria-hidden="true"></i>*/
+      background: #FB8B24;
+  }
+
+  .feature i{
+      color: #04A777;
+      font-size: 30px;
+      margin-bottom: 30px;
+  }
+  .feature h2{
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin: 0;
+  }
+
+  .feature p{
+      color: gray;
+      font-size: 15px;
+      font-weight: 500;
+  }
+
+
+  @media screen and (max-width: 800px){
+      .feature{
+          width: 50%;
+      }
+  }
+
+  @media screen and (max-width: 500px){
+    .feature{
+        width: 100%;
+    }
+}
+
+
+/* signup form */
+.signup-form, .login-form{
+    width: 300px;
+    padding: 20px;
+    height: auto;
+    text-align: center;
+
+    background: url('../images/people.jpg');
+    /* background: #04A777; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.signup-form h1, .login-form h1{
+    margin-top: 20px;
+    margin-bottom: 5px;
+
+    color: #04A777;
+    font-size: 14px;
+}
+
+.signup-form input, .login-form input{
+    display: block;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    height: 40px;
+    text-align: center;
+    
+    font-weight: 500;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+}
+
+.textinput{
+    margin: 2px 0;
+    background: rgb(255, 255, 255, .5);
+    border-radius: 6px;
+
+}
+
+.signup-btn, .login-btn{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background: #FB8B24;
+    color: #fff;
+    border-radius: 44px;
+   
+    
+}
+.signup-btn:hover, .login-btn:hover{
+    transform: scale(0.96);
+    background: #04A777;
+}
+
+.signup-form a, .login-form a {
+    text-decoration: none;
+    color:#04A777;
+    
+    font-size: 12px;
+   
+}
+
+.signup-form span, .signup-form span{
+    font-size: 12px;
+}
+
+@media screen and (max-width: 500px){
+    .signup-form, .login-form{
+        margin-top:0px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    
+}

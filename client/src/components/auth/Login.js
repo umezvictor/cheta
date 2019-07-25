@@ -3,7 +3,7 @@ import  PropTypes  from "prop-types";//a react thing
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 
-
+import '../../assets/css/main.css';
 
 class Login extends Component {
 
@@ -76,15 +76,17 @@ class Login extends Component {
 
         const { errors } = this.state;
         return (
-            <div>
-                <h1>Login</h1>
+            <div className="login-form">
+                
                 <form onSubmit={this.onLogin}>
-                    
-                    <input name="email" type="email" placeholder="email" value={this.state.email} onChange={this.onInputChange}/> <br /><br />
-            
-                    <input name="password" type="password" placeholder="password" value={this.state.password} onChange={this.onInputChange}/> <br /><br />
+                
+                <h1>Login</h1>
                    
-                    <input type="submit" value="Login"/>
+                        <input className="textinput" name="email" type="email" placeholder="email" value={this.state.email} onChange={this.onInputChange}/> 
+                        <input  className="textinput" name="password" type="password" placeholder="password" value={this.state.password} onChange={this.onInputChange}/>
+                  
+                    <input className="login-btn" type="submit" value="Login"/>
+                    <span>Don't have an account?  </span><a href="/signup">Create one</a>
                 </form>
             </div>
         )

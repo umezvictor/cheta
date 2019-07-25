@@ -14,42 +14,45 @@ import store from './store';
 //components
 import Navbar from './components/layout/Navbar';
 import Home from './components/layout/Home';
+
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Dashboard from './components/dashboard/Dashboard';
 
-import './App.css';
+
 import DisplayItems from './components/items/DisplayItems';
 import ViewItem from './components/items/ViewItem';
-
+import AddItem from './components/items/AddItem';
 /*
 token will be lost after page refresh
 the code below prevents that
 */
-if(localStorage.jwtToken){
-  //if jtwToken exists, set auth token header auth
-  setAuthToken(localStorage.jwtToken);
-  //decode token and get user info and get user info and expiry
-  const decoded = jwt_decode(localStorage.jwtToken);//decode token stored in localstorage
-  //you can call any action from the store
-  store.dispatch(setCurrentUser(decoded));
+// if(localStorage.jwtToken){
+//   //if jtwToken exists, set auth token header auth
+//   setAuthToken(localStorage.jwtToken);
+//   //decode token and get user info and get user info and expiry
+//   const decoded = jwt_decode(localStorage.jwtToken);//decode token stored in localstorage
+//   //you can call any action from the store
+//   store.dispatch(setCurrentUser(decoded));
 
-  //check for expired token and logout user automatically
-  const currentTime = Date.now() / 1000;//date.now returns milliseconds, hence division by 1000
-  //remember, jwt has a 'exp' expiry property
-  if(decoded.exp < currentTime){
-    //logout user
-    store.dispatch(logoutUser());//every action can be accessed via the store
+//   //check for expired token and logout user automatically
+//   const currentTime = Date.now() / 1000;//date.now returns milliseconds, hence division by 1000
+//   //remember, jwt has a 'exp' expiry property
+//   if(decoded.exp < currentTime){
+//     //logout user
+//     store.dispatch(logoutUser());//every action can be accessed via the store
 
-    //clear current profile
+//     //clear current profile
 
-    //redirect to login
-    window.location.href = '/login';
-  }
-}
+//     //redirect to login
+//     window.location.href = '/login';
+//   }
+// }
+
 
 
 function App() {
+  
   return (
     <Provider store={ store }>
       <Router>
@@ -61,6 +64,7 @@ function App() {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/dashboard/get_items" component={DisplayItems} />
           <Route exact path="/dashboard/view_item/:id" component={ViewItem} />
+          <Route exact path="/dashboard/add_item" component={AddItem} />
         </div>
       </Router>
     </Provider>

@@ -25,11 +25,15 @@
     "moment": "^2.24.0",
     "mongoose": "^5.5.4",
     "mongoose-timestamp": "^0.6.0",
+    "nexmo": "^2.4.1",
     "node-cron": "^2.0.3",
     "nodemailer": "^6.1.1",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "push.js": "^1.0.9",
+    "twilio": "^3.33.0",
+    "web-push": "^3.3.5"
   },
   "devDependencies": {
     "nodemon": "^1.18.11"

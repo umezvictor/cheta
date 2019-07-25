@@ -3,5 +3,7 @@ module.exports = {
    // MONGO_URI: '',//atlas
     SengridApiKey: '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',
     //JWT_SECRET: process.env.JWT_SECRET || 'mypassword',
-    JWT_SECRET: 'mysecret'
+    JWT_SECRET: 'mysecret',
+    NexmoApiKey: 'ca71278d',
+    NexmoSecretKey: 'SWY3AJXg0vANoIn4'
 }
