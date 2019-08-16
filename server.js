@@ -8,18 +8,16 @@ const webpush = require('web-push');
 const Items = require('./models/ReminderList');
 const moment = require('moment');
 
+const emailReminder = require('./cron_jobs/sendEmail');
+const smsReminder = require('./cron_jobs/sendSms');
 
-
-//const emailReminder = require('./cron_jobs/sendEmail');
-//const smsReminder = require('./cron_jobs/sendSms');
-
-
+//init express
 const app = express();
 
 //bodyparser
 app.use(bodyParser.json());
 
-//connection string
+//get connection string
 const db = config.MONGO_URI;
 
 //connect to mongodb
@@ -28,81 +26,75 @@ mongoose.connect(db, { useNewUrlParser: true })
     .catch(err => console.log(err));//returns a promise
     mongoose.set('useFindAndModify', false);//prevents deprecation warning
 
-//emailReminder.start();//send email reminder via cron job
-//smsReminder.start();//send sms reminder via cron job
+emailReminder.start();//send email reminder via cron job  --runs automatically every one minute
+smsReminder.start();//send sms reminder via cron job --  --runs automatically every one minute
 
 
 //passport middleware
 app.use(passport.initialize());
 
 //passport config (jwt strategy)
-require('./config/passport')(passport);//passport is a parameter, must be passport, don't know why yet
+require('./config/passport')(passport);//passport is a parameter, must be 'passport', don't know why yet
 
-//routes
+// routes
 app.use('/users', require('./routes/users'));
 app.use('/items', require('./routes/items'));
 
-//send reminder via push notification 
-const publicVapidKey = 'BDMXC0kSXBrhnb0eJKsAP-nQMMNr9eLi97fnZw-jrB6Ys2ndUroWsjcScM0kqaL0aoQDLbyucM2uqIAE3I6TYYE';
-const privateVapidKey = '7QEQTvA9hHYrWflqRzeI1eUMgPore70eamjM7YJvacc';
-
-webpush.setVapidDetails('mailto:victorblaze2010@gmail.com', publicVapidKey, privateVapidKey);
+//send reminder via push notification -- not done yet -- yet to figure out how to run it automatically
+webpush.setVapidDetails('mailto:victorblaze2010@gmail.com', config.publicVapidKey, config.privateVapidKey);
 
 
-//new route for push
+//this api will be called by the front end -- see index.html, which then calls the serviceWorker and triggers the push notification
 app.post('/subscribe', (req, res) => {
-   
+   //get the item title
     Items.find({}, {title: 1, details: 1, remindMeBy: 1}).then(item => {
-        //console.log(res.json());
+        
         item.map(data => {
 
             const subscription = req.body;
-            // const payload = data.title;
+          
             const payload = JSON.stringify({title: data.title});
           
-            
+             //current local time           
             const currentDateTime = moment().seconds(0).millisecond(0).toString();  
-            const date = currentDateTime.toString();//convert to normal time format -- string format
-          
-            // console.log(date);
+            const date = currentDateTime.toString();//remove west africa from it
+            
             //due date from database
             const dueDate = data.remindMeBy;
+           var localDueDate = dueDate.toString();
            
-            var localDueDate = dueDate.toString();
             
             var index = localDueDate.indexOf(" (");
                      //if the index exists
                      if(~index){
                          localDueDate = localDueDate.substr(0, index); 
-                         
-                       //console.log();
                      }
+                     //if set set due date time is less than current date time
                      if(date < localDueDate){
-                         //console.log(`${date} is less than ${localDueDate}`);
+                         //console.log('Push not yet due');
                      }else if(date > localDueDate){
-                       // console.log(`${date} is greater than ${localDueDate}`);
-                     }else{
-                       // console.log(`${date} is equal to ${localDueDate}`);
-                        
+                       //console.log('Push overdue');
+                     }else{   
                         webpush.sendNotification(subscription, payload).catch(err => console.error(err));
                      }
            
         });
-            //get current date and time
-            
-
         })
         .catch(err => console.log(err));
 });
 
 
-
-//client setup. static folder. React is used for the frontend
+//serve static assets if in prduction  -- gives access to the front end routes built with react
+if(process.env.NODE_ENV === 'production'){
+//set static folder
 app.use(express.static('client/build'));
 
+//for any route other than the api routes, get the index.html file in build in client folder
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
+}
+
 
 
 

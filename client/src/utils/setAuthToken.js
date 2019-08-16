@@ -2,7 +2,7 @@
 //token is stored in localstorage
 import axios from 'axios';
 /*
-goal here is to prevent me from manually ensuring token is avaailable for each
+goal here is to prevent app from manually ensuring token is available for each
 request.
 
 axios handles this better than fetch api

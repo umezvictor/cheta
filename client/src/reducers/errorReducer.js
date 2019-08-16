@@ -1,10 +1,11 @@
 import { GET_ERRORS } from '../actions/types';
+
 const initialState = {};//empty object, will contain the errors object
 
 /*
 in reducers, we evaluate what action happened and sent the new 
 copy of the state to the store
-
+//
 
 errors reducer can also be here, but I choose to create a dedi
 */

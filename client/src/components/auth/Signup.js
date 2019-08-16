@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';//for redirecting from redux action
 import  PropTypes  from "prop-types";//a react thing
-//import classnames from 'classnames';
+
 
 //redux implememntation
 //to use redux in a react component, use connect
@@ -15,27 +15,12 @@ import '../../assets/css/main.css';
 
 class Signup extends Component {
 
-    /*
-    this component has a component level state, not app level state,
-     because the state only applies to the 
-    form components.
-
-    app level state will be handled by redux
-    */
-
-    /*
-    initialise state within constructor
-    when you are getting props from the parent component, then use
-    constructor(props){
-        super(props)
-    }
-    */
+   
     constructor() {
         super();
         this.state = {
             //init form fields and errors field
             firstname: '',
-            gender: '',
             email: '',
             phone: '',
             password: '',
@@ -73,24 +58,12 @@ class Signup extends Component {
         this.setState({[e.target.name]: e.target.value});//get user input
     }
 
-    /*
-       classname package helps us display classnames conditionally,
-       i used it to display bootstrap error validator classes (is-invalid, invalid-feedback)
-        messages conditionally,
-    
-
-            http://localhost:5000/users/resgister is not used in the axios post request 
-            because http://localhost:5000 has been defined
-            as "proxy" in the client package.json file. the system understands what we mean
-        */
-
     //submit form data, triggers the action creator 'registerUser'
     onFormSubmit(e){
         e.preventDefault();
 
         const newUser = {
             firstname: this.state.firstname,
-            gender: this.state.gender,
             email: this.state.email,
             phone: this.state.phone,
             password: this.state.password
@@ -100,41 +73,25 @@ class Signup extends Component {
         registerUser is the action. withRouter allows me to 
         redirect using this,props.history within the registerUser action file in redux
         */
-        this.props.registerUser(newUser, this.props.history);
-
-
-        /*
-        onsubmit, what happens?
-        1. call registerUser
-        2. dispatches to the reducer
-        3. fills the user object 
-        note the auth state was mapped to a property in this component
-        */
-        
-        /*
-        axios equest has been moved to the redux authAction.js, was here before
-
-        axios.post('/users/register', newUser)
-            .then(res => console.log(res.data))
-           .catch(err => this.setState({errors: err.response.data}));
-            //.catch(err => console.log(err.response.data));
-            //save any error message into the errors object and use it to display error message on the browser
-       */ 
+        this.props.registerUser(newUser, this.props.history);    
     }
 
 
     render() {
-        //const { errors } = this.state;
+        const { errors } = this.state;
         
         return (
             <div className="signup-form">
                 <form onSubmit={this.onFormSubmit}>
                 <h1>Create an account</h1>
-                <input className="textinput" name="firstname" type="text" placeholder="firstname" value={this.state.firstname} onChange={this.onInputChange}/> 
-                    <input className="textinput"  name="gender" type="text" placeholder="gender" value={this.state.gender} onChange={this.onInputChange}/> 
+                    <input className="textinput" name="firstname" type="text" placeholder="firstname" value={this.state.firstname} onChange={this.onInputChange}/> 
+                    <span className="errors">{errors.firstname}</span> 
                     <input className="textinput" name="email" type="email" placeholder="email" value={this.state.email} onChange={this.onInputChange}/> 
+                    <span className="errors">{errors.email}</span>
                     <input className="textinput" name="phone" type="text" placeholder="phone number" value={this.state.phone} onChange={this.onInputChange}/> 
+                    <span className="errors">{errors.phone}</span>
                     <input className="textinput" name="password" type="password" placeholder="password" value={this.state.password} onChange={this.onInputChange}/> 
+                    <span className="errors">{errors.password}</span>
                     <input className="signup-btn" type="submit" value="Signup"/>
                     <span>Already have an account?  </span><a href="/login">login</a>
                 </form>

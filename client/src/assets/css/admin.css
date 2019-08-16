@@ -1,0 +1,400 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+/* mobile first approach */
+
+/* #D78521;  #04A777; #f1f1f1*/
+
+.navbar{
+    background-color: #f1f1f1;
+    overflow: hidden;
+    height: 55px;
+}
+
+.open-menu-btn{
+    
+  
+        display: block;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        margin-left: 5px;
+        padding: 10px;   
+    
+    
+}
+
+.navbar a{
+    float: left;
+    display:block;
+    color: #000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+
+}
+
+
+.display-area{
+    display: flex;
+    }
+
+.side-nav{
+    width: 0;
+}
+
+
+.side-nav a{
+    
+    display: none;
+}
+
+.side-nav a:hover{
+    color:#fff;
+}
+
+.side-nav .btn-close{
+  
+    display: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 0;
+    padding: 0;   
+}
+
+
+.main-content{
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    height: 100vh;
+}
+
+.date-span{
+    font-size: 13px;
+    margin-left: 2px;
+    
+}
+
+@media screen and (min-width: 600px){
+    .display-area{
+        align-items: flex-start;
+    }
+    .navbar{
+        height: 40px;
+    }
+    .open-slide{
+        display: none;
+    }
+    .side-nav{
+        flex-basis: 15%;
+        background: #04A777;
+        
+        height: 100vh;  
+    }
+    .side-nav a{
+        display: block;
+        
+        padding: 10px 10px 10px 30px;
+        text-decoration: none;
+        font-size: 12px;
+        color: #fff;
+        display: block;
+        transition: 0.3s; 
+    }
+    .main-content{
+        padding-left: 20px;
+        flex-basis: 85%;
+        
+
+    }
+
+}
+
+
+.main-content{
+    text-align: center;
+}
+/* add item form */
+.add-item-form{
+    /* background: #f1f1f1; */
+    width: 95%;
+    text-align: center;
+    height: auto;
+    padding: 30px 0 10px 0;
+    margin-top: 20px;
+    position: absolute;
+    
+    
+}
+
+.add-item-form input{
+    display:block;
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    text-align: center;
+     
+    font-weight: 200;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    margin-left: 10px;
+}
+
+
+
+.text-input{
+    border-radius: 5px;
+    background: #f1f1f1;
+   
+}
+
+
+
+.item-btn{
+    
+   
+    border-radius: 6px;
+    background:#04A777;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+.item-btn:hover{
+    background: #D78521;
+}
+
+.item-header{
+    font-size: 13px;
+    color: #D78521;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.welcome-text{
+    
+    font-size: 14px;
+    color: #000;
+}
+.welcome-link{
+    
+    font-size: 14px;
+    color: #D78521;
+}
+
+@media screen and (min-width: 600px){
+    
+    .add-item-form{
+        width: 30%;
+        margin-top: 40px;
+        
+        padding-right: 10px;
+        margin-left: 50px;
+        
+        
+    }
+
+    .add-item-form input{
+        display:block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        height: 40px;
+        text-align: center;
+         
+        font-weight: 200;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        margin-right: 5px;
+        margin-left:5px;
+    }
+
+   
+}
+
+
+/* reminder items */
+.main-content ul{
+    list-style: none;
+    font-size: 15px;
+    font-weight: 200px;
+}
+
+.main-content ul li {
+    text-align: justify;
+}
+
+
+.view-item-link{
+    text-decoration: none;
+    font-size: 12px;
+    color: #04A777;
+    font-weight: 500;
+}
+
+.delete-item-btn{
+    background-color: transparent;
+    margin-left: 5px;
+    border-radius: 6px;
+    border: none;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    padding: 0;
+    color: red;
+    
+}
+
+.edit-item-btn{
+    background: transparent;
+    margin-left: 5px;
+    border-radius: 6px;
+    border: none;
+    width: 35px;
+    height: 20px;
+    cursor: pointer;
+    padding: 0;
+    color: #04A777;
+    
+}
+
+.item-data{
+    font-size: 13px;
+    color: #D78521;
+    font-weight: 500;
+}
+
+.item-detail{
+    font-size: 13px;
+}
+
+.back-link{
+    text-decoration: none;
+    background: #04A777;
+    margin-top: 20px;
+    padding: 8px;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 6px;
+}
+
+.back-link:hover{
+    background: #D78521;
+    color: #fff;
+    font-size: 13px;
+}
+
+
+/* modal styling */
+.modal{
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.modal-content{
+    background-color: #fff;
+    margin: 20% auto; 
+    width: 400px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2),0 7 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: 1s;
+
+}
+
+ .main-content .modal.header{
+    background: #D78521;
+    padding: 15px;
+    color: #fff;
+}
+
+.modal-h2{
+    font-size: 13px;
+    
+}
+
+
+
+.modal-body{
+    padding: 10px 20px;
+}
+
+
+.close-modal-btn{
+    color: red;
+    float: right;
+    font-size: 30px
+}
+
+.close-modal-btn:hover, .close-modal-btn:focus{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* changing opacity from 0 to 1 in I sec as specified in animation duration above */
+@keyframes modalopen{
+    from{ opacity: 0}
+    to {opacity: 1}
+}
+
+/* form inside modal */
+.edit-item-input{
+height: 40px;
+padding: 10px;
+width: 100%;
+border-bottom: 1px solid #D78521;
+border-right: none;
+border-left: none;
+border-top: none;
+}
+
+.update-btn{
+    background: #04A777;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.update-btn:hover{
+    background: #D78521;
+    
+}
+
+@media screen and (max-width: 400px){
+    .modal-content{
+        width: 300px;
+    }
+}
+
+.checkbtn{
+    width: 100px;
+    padding: 20px;
+}
+
+
+.errors{
+    font-size: 12px;
+    color: red;
+    text-align: center;
+}

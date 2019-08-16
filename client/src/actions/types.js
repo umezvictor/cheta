@@ -7,3 +7,4 @@ export const GET_ITEM = 'GET_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const ITEM_LOADING = 'ITEM_LOADING';
 export const DELETE_ITEM = 'DELETE_ITEM';
+export const MARK_COMPLETED = 'MARK_COMPLETED';

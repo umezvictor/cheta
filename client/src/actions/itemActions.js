@@ -14,7 +14,7 @@ export const addItem = (item, id) => dispatch => {
                 payload: res.data 
             })
             )
-            .then(_ => window.location.reload())
+            .then(_ => window.location.reload())//referesh page after creating new item
 
         .catch(err => 
             dispatch({
@@ -66,15 +66,16 @@ export const getSingleItem = id => dispatch => {
 };
 
 //edit item, item id is used as the query parameter 
-export const editItem = id => dispatch => {
-    
-    axios.put(`/items/fetch_item/${id}`)
+export const editItem = (newItem, id) => dispatch => {
+    //newItem is the json containinng the updated item created in the frontend upddate form
+    axios.put(`/items/fetch_item/${id}`, newItem)
         .then(res => 
             dispatch({
                 type: EDIT_ITEM,
                 payload: res.data 
             })
             )
+            .then(_ => window.location.reload())
 
         .catch(err => 
             dispatch({
@@ -92,7 +93,7 @@ export const deleteItem = (id) => dispatch => {
         .then(res => dispatch({
             type: DELETE_ITEM
         }))
-        .then(_ => window.location.reload())
+        .then(_ => window.location.reload())//reload browser after delete
 
         .catch(err => 
             dispatch({
@@ -109,3 +110,23 @@ export const setItemLoading = () => {
         type: ITEM_LOADING
     }
 };
+
+
+
+// export const markCompleted = (itemStatus, id) => dispatch => {
+    
+//     axios.put(`/items/completed/${id}`, itemStatus)
+//         .then(res => 
+//             dispatch({
+//                 type: MARK_COMPLETED,
+//                 payload: res.data 
+//             })
+//             )
+           
+//         .catch(err => 
+//             dispatch({
+//                 type: GET_ERRORS,
+//                 payload: err.response.data
+//             })
+//             );
+// };

@@ -4,24 +4,9 @@ import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 
 import '../../assets/css/main.css';
-
+//
 class Login extends Component {
 
-    /*
-    this component has a component level state, not app level state,
-     because the state only applies to the 
-    form components.
-
-    app level state will be handled by redux
-    */
-
-    /*
-    initialise state within constructor
-    when you are getting props from the parent component, then use
-    constructor(props){
-        super(props)
-    }
-    */
     constructor() {
         super();
         this.state = {
@@ -43,12 +28,12 @@ class Login extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-       //check if authenticated
+       //check if there is an authenticated prop from redux app level state 
        if(nextProps.auth.isAuthenticated){
            //redirect to dashboard
            this.props.history.push('/dashboard');
        }
-
+       // if errors props exist in the app level state, change component errors state to the errors prop
         if(nextProps.errors){
             this.setState({errors: nextProps.errors});
         }
@@ -74,7 +59,7 @@ class Login extends Component {
 
     render() {
 
-        const { errors } = this.state;
+       const { errors } = this.state;//from index reducer
         return (
             <div className="login-form">
                 
@@ -83,8 +68,9 @@ class Login extends Component {
                 <h1>Login</h1>
                    
                         <input className="textinput" name="email" type="email" placeholder="email" value={this.state.email} onChange={this.onInputChange}/> 
+                        <span className="errors">{errors.email}</span>
                         <input  className="textinput" name="password" type="password" placeholder="password" value={this.state.password} onChange={this.onInputChange}/>
-                  
+                        <span className="errors">{errors.password}</span>
                     <input className="login-btn" type="submit" value="Login"/>
                     <span>Don't have an account?  </span><a href="/signup">Create one</a>
                 </form>

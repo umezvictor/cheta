@@ -28,15 +28,15 @@ const ItemSchema = new mongoose.Schema({
     },
     details: {
         type: String,
-        required: true//set a default value later
+        default: ''
     },
     remindMeBy: {
         type: Date,
         required: true
     },
     completed: {
-        type: Boolean,
-        default: false
+        type: String,
+        default: 'pending'
     }
 });
 //either works

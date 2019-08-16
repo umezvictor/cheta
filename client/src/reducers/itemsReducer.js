@@ -1,8 +1,7 @@
-//import isEmpty from '../validation/is-empty';
-import { ADD_ITEM, GET_ITEMS, GET_ITEM, ITEM_LOADING, DELETE_ITEM } from '../actions/types';//catch it from authactions
 
+import { ADD_ITEM, GET_ITEMS, GET_ITEM, ITEM_LOADING, DELETE_ITEM, EDIT_ITEM, MARK_COMPLETED } from '../actions/types';//catch it from authactions
 
-//initial state of tood items
+//initial state of todo items
 const initialState = {
     todoCreated: false,
     todos: [], //holds all items fetched using the user id
@@ -10,7 +9,7 @@ const initialState = {
     loading: false,
     itemDeleted: false
 }
-
+//
 /*
 loading is used to prevent the component from rendering when
 the data is still fetching
@@ -43,6 +42,20 @@ export default function(state = initialState, action){
                     todo: action.payload,
                     loading: false
                 }
+                case EDIT_ITEM:
+                    return {
+                        ...state,
+                        todoCreated: false,
+                        todo: action.payload,
+                        loading: false
+                    }
+                    case MARK_COMPLETED:
+                        return {
+                            ...state,
+                            todoCreated: false,
+                            todo: action.payload,
+                            loading: false
+                        }
                 case DELETE_ITEM:
                     return {
                         ...state,

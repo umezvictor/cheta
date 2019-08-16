@@ -2,18 +2,18 @@
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken'; 
 import jwt_decode from 'jwt-decode';
-import { GET_ERRORS  } from './types';
-import { SET_CURRENT_USER} from './types';
 
+import { GET_ERRORS, SET_CURRENT_USER} from './types';
+//
 
 /*
 history allows redirection to login page, used in the signup.js file
 dispatch allows for asynchronus handling, waiting for response bla bla
  export const registerUser = userData => dispatch => note: this a clearer way to put dispatch function inside registerUser function
-to dispatch an action to the reducer it must have to a type
+to dispatch an action to the reducer it must have a type
     
 data needs to be handled asyncronously here.
-we make a request, wai for the response before dispacthing to the reducer,
+we make a request, wait for the response before dispacthing to the reducer,
 this is where thunk comes in
 
     
@@ -49,7 +49,7 @@ send token along whenver a request is made to a protected route
      axios.post('/users/login', userData)
         .then(res => {
             
-            const { token } = res.data;
+            const { token } = res.data; //note: a token is assigned when a user is logged in
             //save token to localstorage
             localStorage.setItem('jwtToken', token);
             //set token to Auth header
@@ -57,7 +57,7 @@ send token along whenver a request is made to a protected route
             //decode token to get user data
             const decoded = jwt_decode(token);
             //setcurrentuser, created a function to handle that, then dispatched to it
-            dispatch(setCurrentUser(decoded)); //dispatch to reducer
+            dispatch(setCurrentUser(decoded)); //dispatch to authreducer
             //reducer will use the type to determine the next value of the state
             //ssetcurrentuser action has a type of set_current_user, which is associated with authReducer
             //that's how reducers know which action is meant for them
@@ -77,7 +77,7 @@ send token along whenver a request is made to a protected route
      //dispatch to the reducer
      return {
          type: SET_CURRENT_USER,  //once dispatched, it is caught in the authReducer
-         payload: decodedToken//contains user info that was decoded fron token
+         payload: decodedToken//contains user info that was decoded from the token
      }
  };
 
@@ -94,4 +94,5 @@ send token along whenver a request is made to a protected route
      setAuthToken(false);//see setauthoken.js else condition
      //set current user to empty object which will set issuthenticated to false
      dispatch(setCurrentUser({})); 
+     window.location.href = "/login";
  }

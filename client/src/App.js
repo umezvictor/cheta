@@ -26,28 +26,26 @@ import AddItem from './components/items/AddItem';
 /*
 token will be lost after page refresh
 the code below prevents that
-*/
-// if(localStorage.jwtToken){
-//   //if jtwToken exists, set auth token header auth
-//   setAuthToken(localStorage.jwtToken);
-//   //decode token and get user info and get user info and expiry
-//   const decoded = jwt_decode(localStorage.jwtToken);//decode token stored in localstorage
-//   //you can call any action from the store
-//   store.dispatch(setCurrentUser(decoded));
+// // */
+if(localStorage.jwtToken){
+  //if jtwToken exists, set auth token header auth
+  setAuthToken(localStorage.jwtToken);
+  //decode token and get user info and get user info and expiry
+  const decoded = jwt_decode(localStorage.jwtToken);//decode token stored in localstorage
+  //you can call any action from the store
+  store.dispatch(setCurrentUser(decoded));
 
-//   //check for expired token and logout user automatically
-//   const currentTime = Date.now() / 1000;//date.now returns milliseconds, hence division by 1000
-//   //remember, jwt has a 'exp' expiry property
-//   if(decoded.exp < currentTime){
-//     //logout user
-//     store.dispatch(logoutUser());//every action can be accessed via the store
+  //check for expired token and logout user automatically
+  const currentTime = Date.now() / 1000;//date.now returns milliseconds, hence division by 1000
+  //remember, jwt has a 'exp' expiry property
+  if(decoded.exp < currentTime){
+    //logout user
+    store.dispatch(logoutUser());//every action can be accessed via the store
 
-//     //clear current profile
-
-//     //redirect to login
-//     window.location.href = '/login';
-//   }
-// }
+    //redirect to login
+    window.location.href = '/login';
+  }
+}
 
 
 
@@ -74,3 +72,4 @@ function App() {
 export default App;
 
 //C:\Program Files\MongoDB\Server\4.0\bin
+//

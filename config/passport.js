@@ -1,6 +1,6 @@
 //here is where the token issued to the user at login will be verified usine jwt strategy
 
-//this file is used in creating protected routes, call it in any file where you want a route protected
+//this file is used in creating protected routes, 
 
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
@@ -9,6 +9,7 @@ const config = require('../config/keys');
 
 //options for handling the token, check passport documentation
 const opts = {};
+//extract the token assigned to the user on login
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = config.JWT_SECRET;
 

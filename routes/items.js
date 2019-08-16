@@ -1,19 +1,15 @@
 /*
-when user logs in, a token is issued to him. That token will be sent in the header for every page he tries to
-access. The token will be verified and the id in it will be decoded. the system then finds the user with that id and 
+when user logs in, a token is issued to him. That token will be sent 
+in the header for every page he tries to
+access. The token will be verified and the id in it will be decoded. 
+the system then finds the user with that id and 
 grants access if verified.
 */
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Items = require('../models/ReminderList');
-const nodemailer = require ('nodemailer');
-const sendgridTransport = require('nodemailer-sendgrid-transport');
-const async = require('async');
-const config = require ('../config/keys');
 const passport = require('passport');
-
-
 
 
 // @route:  POST items/create/:id
@@ -24,13 +20,14 @@ the id here is the user id which can be obtained once the user
  is logged in and verified, it will be passed as a parameter
 into the url
 */
-
+//jwt below indicates jwt json web token strategy is used -- there other ones available in passport
+//passport.authenticate protects the route from unauthorised user
 router.post('/create/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
 
     const { title, details, remindMeBy } = req.body;
 
     if(!req.is('application/json')){
-        return res.json({msg: 'only json allowed'});
+        return res.status(400).json({msg: 'only json allowed'});
     }
 
     const userId = req.params.id;  
@@ -48,13 +45,13 @@ router.post('/create/:id', passport.authenticate('jwt', { session: false }), (re
 
     //if errors exist
     if(errors.length > 0){
-        res.send(errors);
+        res.status(400).send(errors);
     } else {
          //find the user that created the reminder item, and save his namae with the records
     User.findOne({_id: userId }).then(user => {
         if(!user){ 
            errors.push({msg: 'Sorry, you need to login to access this feature'});
-           res.send(errors);
+           res.status(400).send(errors);
         } else {
            
             const newItems = new Items({
@@ -62,13 +59,13 @@ router.post('/create/:id', passport.authenticate('jwt', { session: false }), (re
                 creatorId: user._id,
                 creatorEmail: user.email,
                 creatorPhoneNumber: user.phone,
-                title,//item was created by my name
+                title,
                 details,
                 remindMeBy    
             });
 
               newItems.save()
-                .then(res.json({msg: 'Reminder created successfully'}))
+                .then(res.status(200).json({msg: 'Reminder created successfully'}))
                 .catch(err => console.log(err)); 
         }
     })
@@ -91,7 +88,7 @@ router.get('/fetch/:id', passport.authenticate('jwt', {session: false}), async (
         //where creatorId matches req.params.id
         res.json(userItems);
     } catch (error) {
-        res.json({msg: 'No item found'});
+        res.status(400).json({msg: 'No item found'});
     }
 });
 
@@ -109,11 +106,9 @@ router.get('/fetch_item/:id', passport.authenticate('jwt', {session: false}), as
     const itemId = req.params.id;
     try {
         const item = await Items.findById({_id: itemId});
-        //const userItems = await Items.find().where('creatorId').equals(userId);
-        //where creatorId matches req.params.id
         res.json(item);
     } catch (error) {
-        res.json({msg: 'No item found'});
+        res.status(400).json({msg: 'No item found'});
     }
 });
 
@@ -136,12 +131,9 @@ router.put('/fetch_item/:id', passport.authenticate('jwt', {session: false}), as
         const updateItem = await Items.findOneAndUpdate({_id: itemId}, req.body, {new: true});
         res.status(200).json({msg: 'Item updated successfully'});//ok 
     } catch (error) {
-        res.json({msg: 'Update failed, try again'});
+        res.status(400).json({msg: 'Update failed, try again'});
     }
 });
-
-
-
 
 
 // @route:  DELETE items/delete_item/:id
@@ -161,7 +153,6 @@ router.delete('/delete_item/:id', passport.authenticate('jwt', {session: false})
         res.json({msg: 'Update failed, try again'});
     }
 });
-
 
 
 module.exports = router;

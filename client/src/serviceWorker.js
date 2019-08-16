@@ -19,7 +19,7 @@ const isLocalhost = Boolean(
       /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
     )
 );
-//process.env.NODE_ENV === 'production' &&    --- removed from the if condition below during development
+//if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator)    --- removed from the if condition below during development
 //navigator is the browser's api
 export function register(config) {
   if ('serviceWorker' in navigator) {
@@ -33,7 +33,7 @@ export function register(config) {
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/custom-service-worker.js`;
+      const swUrl = `${process.env.PUBLIC_URL}/custom-service-worker.js`;//this file is in the public directory
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.

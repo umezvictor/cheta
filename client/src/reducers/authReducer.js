@@ -1,4 +1,5 @@
 import isEmpty from '../validation/is-empty';
+
 import { SET_CURRENT_USER } from '../actions/types';//catch it from authactions
 
 
@@ -7,7 +8,7 @@ const initialState = {
     isAuthenticated: false,
     user: {}
 }
-
+//
 /*
 in reducers, we evaluate what action happened and sent the new 
 copy of the state to the store

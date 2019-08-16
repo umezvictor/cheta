@@ -17,7 +17,7 @@ html, body {
     /* font-family: 'Dancing Script', cursive; */
     font-family: 'Montserrat', sans-serif;
     line-height: 1.7em;
-    background: #f1c40f;
+    background: #fff;
 }
 
 
@@ -76,7 +76,10 @@ html, body {
     text-decoration: none;;
 }
 
-/*showcase in home.js*/
+/* mobile first approach 
+the css before the media queries apply to mobile, then later upscaled
+for other devices within the media queries.
+*/
 .showcase {
 display: flex;
 flex-wrap: wrap;
@@ -92,32 +95,12 @@ align-content: center;
     background: none;
     margin: 10px;
     text-align: center; /* centers the button */
+    
+
 }
 .intro-image-right{
-    
-    height: 300px;
-   
+    height: 300px;   
 }
-
-
-.intro-text-left h1{
-    font-size: 30px;
-    color:#04A777;
-    text-decoration: none;;
-    
-    
-    margin-bottom: 10px; 
-} 
-
-.intro-text-left p {
-    font-size: 1.5rem;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px; 
-    margin-bottom: 30px;
-}
-
-
 
 .intro-image-right img{
     width: 100%;
@@ -125,7 +108,22 @@ align-content: center;
     padding: 10px;
 }
  
+.intro-text-left h1{
+    font-size: 18px;
+    color: #D78521;
+    text-decoration: none;;
+    margin-bottom: 10px; 
+    font-weight: 400;
+} 
 
+.intro-text-left p {
+    font-size: 1rem;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px; 
+    margin-bottom: 10px;
+    
+}
 
 .btn{
     display: inline-block;
@@ -144,38 +142,166 @@ align-content: center;
     color: #333;
 }
 
+/* below showcase */
+.below-showcase{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.pitch-area {
+    /* contains h1 and p */
+    padding: 20px;
+    order: 1;
+    
+}
+.pitch-area h1{
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    color: #000;
+    font-weight: 400;
+}
+.pitch-area p{
+    font-size: 16px;
+    padding-bottom: 30px;
+}
+
+.pitch-area a{
+    font-size: 20px;
+    text-align: left;
+    text-decoration: none;
+    color: #D78521;
+    padding:0;
+}
+.pitch-area a:hover{
+    border-bottom: 1px solid #04A777;
+}
+.pitch-image-div{
+    height: 300px;
+    
+    margin: 20px 10px 30px 10px;
+    order: 2; /*makes the image come below the pitch h1 and p in mobile device*/
+
+}
+.pitch-image-div img{
+    width: 100%;
+    height: 300px;
+}
+
+
   
   /* Tablet Styles */
-  @media only screen and (min-width: 401px) and (max-width: 960px) {
+  @media only screen and (min-width: 500px) and (max-width: 812px) {
     .showcase{
-        display: flex;
+        flex-wrap: nowrap;
     }
     .intro-image-right{
-        width: 100%;
-        height: 400px;
-        margin-top: 10px;
        
-
+        height: 300px;
+        margin-top: 10px;
+        flex-basis: 50%;
     }
     .intro-image-right img{
-        height: 400px;
+        height: 300px;
+        padding: 20px;
         
     }
     .intro-text-left{
-        width: 100%;
+        flex-basis: 50%;
+        height:350px; 
+    }
+    
+.intro-text-left h1{
+    font-size: 18px;
+    color: #D78521;
+    text-decoration: none;
+    font-weight: 400;
+    
+} 
+
+.intro-text-left p {
+    font-size: 14px;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    
+}
+
+.btn{
+    display: inline-block;
+    font-size: 12px;
+    color:#fff;
+    text-decoration: none;
+    background: #04A777;
+    padding:  10px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+    /* below showcase */
+    .below-showcase{
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .pitch-area {
+        /* contains h1 and p */
+        padding: 20px;
+        order: 1;
+        flex-basis: 50%;
         
+    }
+    .pitch-area h1{
+        font-size: 18px;
+        margin-bottom: 20px;
+        padding-top: 10px;
+        color: #000;
+        font-weight: 400;
+    }
+    .pitch-area p{
+        font-size: 16px;
+        padding-bottom: 30px;
+    }
+    
+    .pitch-area a{
+        font-size: 20px;
+        text-align: left;
+        text-decoration: none;
+        color: #D78521;
+        padding:0;
+    }
+    
+    .pitch-area a:hover{
+        border-bottom: 1px solid #04A777;
+    }
+    
+    .pitch-image-div{
+        height: 350px;
+        flex-basis: 50%;
+        margin: 20px 10px 30px 10px;
+        order: 2; /*makes the image come below the pitch h1 and p in mobile device*/
+    
+    }
+    .pitch-image-div img{
+        width: 100%;
+        height: 300px;
     }
   }
   
+
+
+
+
   /* Desktop layout */
-  @media only screen and (min-width: 961px){
+  @media only screen and (min-width: 813px){
     .showcase{
         display: flex; 
         height: 100vh;
         flex-wrap: nowrap;
-        background:none;
-
-         
+        /* background:rgb(173, 231, 214); */    
     }
     
    
@@ -195,37 +321,90 @@ align-content: center;
     }
 
     .intro-text-left h1{
-        font-size: 20px;
-        color:#000;
+        font-size: 30px;
+        color: #D78521;
+        font-weight: 400;
         text-align: center;
         margin-top: 40px;
         margin-bottom: 10px; 
     } 
     
     .intro-text-left p {
-        font-size: 20px;
+        font-size: 1.1rem;
+       
         text-align: center;
         padding: 10px;
         margin-top: 40px; 
     }
+
+    /* below showcase */
+    .below-showcase{
+        display: flex;
+        padding-bottom: 0;
+        
+    }
+
+    .pitch-area {
+        padding-left: 100px;
+        
+        flex-basis: 50%;
+        order: 2;
+    }
+    .pitch-area h1{
+        font-size: 28px;
+        margin-bottom: 20px;
+        padding-top: 40px;
+        color: #000;
+        font-weight: 400;
+    }
+    .pitch-area p{
+        font-size: 16px;
+        padding-bottom: 30px;
+    }
+
+    .pitch-area a{
+        font-size: 20px;
+        text-align: left;
+        text-decoration: none;
+        color: #D78521;
+        padding:0;
+    }
+    .pitch-area a:hover{
+        border-bottom: 1px solid #04A777;
+       
+    }
+
+    .pitch-image-div{
+        height: 450px;
+        flex-basis: 40%;
+        margin-left: 45px;
+        order: 1;
+        
+    }
+    .pitch-image-div img{
+        width: 100%;
+        height: 300px;
+        padding-left: 25px;
+    }
+
   }
  
  
 
   /* features section */
   .features{
-      background: #f1f1f1;
+      background: #fff;
       text-align: center;
       margin-bottom: 30px;
   }
 
   .features h1{
-      display: inline-block;
-      text-transform: uppercase;
-      border-bottom: 4px solid #D78521;
-      font-size: 20px;
-      padding-bottom: 10px;
-      margin-top: 40px;
+    display: inline-block;
+    text-transform: uppercase;
+    border-bottom: 2px solid #D78521;
+    font-size: 16px;
+    padding-bottom: 10px;
+    margin-top: 5px;
   }
 
   .cen{
@@ -246,8 +425,7 @@ align-content: center;
   }
 
   .feature:hover{
-      /* background: #ddd; <i class="fa fa-mobile" aria-hidden="true"></i>*/
-      background: #FB8B24;
+      background: #ddd;
   }
 
   .feature i{
@@ -289,8 +467,8 @@ align-content: center;
     height: auto;
     text-align: center;
 
-    background: url('../images/people.jpg');
-    /* background: #04A777; */
+    
+    background: #DCDCDC; 
     position: absolute;
     top: 50%;
     left: 50%;
@@ -311,7 +489,7 @@ align-content: center;
 .signup-form input, .login-form input{
     display: block;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     margin-bottom: 20px;
 
     height: 40px;
@@ -325,7 +503,7 @@ align-content: center;
 
 .textinput{
     margin: 2px 0;
-    background: rgb(255, 255, 255, .5);
+    /* background: rgb(255, 255, 255, .5); */
     border-radius: 6px;
 
 }
@@ -336,6 +514,7 @@ align-content: center;
     background: #FB8B24;
     color: #fff;
     border-radius: 44px;
+    
    
     
 }
@@ -352,7 +531,7 @@ align-content: center;
    
 }
 
-.signup-form span, .signup-form span{
+.signup-form span, .login-form span{
     font-size: 12px;
 }
 
@@ -363,4 +542,100 @@ align-content: center;
         margin-bottom: 10px;
     }
     
+}
+
+
+
+/* Testimonials section */
+.testimonials{
+    padding: 40px 0;
+    background: #f1f1f1;
+    color: #434343;
+    text-align: center;
+}
+
+.inner{
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+.inner h1{
+    display: inline-block;
+    text-transform: uppercase;
+    border-bottom: 2px solid #D78521;
+    font-size: 16px;
+    padding-bottom: 10px;
+    margin-top: 15px;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.col{
+    flex: 33.33%;
+    max-width: 33.33%;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.testimonial{
+    background: #fff;
+    padding: 30px;
+}
+
+.testimonial img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%
+}
+
+.name{
+    font-size: 14px;
+    
+    margin: 20px 0;
+}
+
+.stars{
+    color: #04A777;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 960px){
+    .col{
+        flex: 100%;
+        max-width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .col{
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+
+.footer{
+    display: block;
+    background: #f1f1f1;
+}
+
+.copyright{
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.copyright span{
+    color: #04A777;
+}
+
+
+.errors{
+    color: red;
+    font-size: 12px;
+    text-align: center;
 }

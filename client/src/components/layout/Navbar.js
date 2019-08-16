@@ -24,9 +24,9 @@ import '../../assets/css/main.css';
                 <ul>
                 
                 <li>
-                    <a href=" " onClick={this.onLogoutClick.bind(this)}>
-                        Hi  {user.firstname}  Logout
-                    </a>
+                    <Link to=" " onClick={this.onLogoutClick.bind(this)}>
+                        Hi  {user.firstname},  <i className="fa fa-sign-out" aria-hidden="true"></i> Logout
+                    </Link>
                 </li>
             </ul> 
             
@@ -37,10 +37,10 @@ import '../../assets/css/main.css';
             
                 <ul>
                     <li>
-                         <a className="current-link" href="/login">Login</a>
+                         <Link className="current-link" to="/login">Login</Link>
                     </li>
                     <li>
-                         <a href="/signup">Signup</a>
+                         <Link to="/signup">Signup</Link>
                     </li>
             </ul>
             

@@ -1,9 +1,9 @@
-module.exports = {
-    MONGO_URI: 'mongodb://localhost:27017/reminder',//compass
-   // MONGO_URI: '',//atlas
-    SengridApiKey: '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',
-    //JWT_SECRET: process.env.JWT_SECRET || 'mypassword',
-    JWT_SECRET: 'mysecret',
-    NexmoApiKey: 'ca71278d',
-    NexmoSecretKey: 'SWY3AJXg0vANoIn4'
+//load keys based on environment
+//if in production environment
+if(process.env.NODE_ENV === 'production'){
+    module.exports = require('./keys_prod');
+}else{
+    //if in development environment
+    module.exports = require('./keys_dev');
 }
+

@@ -7,19 +7,16 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Victor Umezuruike",
   "license": "MIT",
   "dependencies": {
-    "async-waterfall": "^0.1.5",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^4.1.0",
-    "cron": "^1.7.1",
     "express": "^4.16.4",
-    "express-validator": "^5.3.1",
-    "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
@@ -31,8 +28,7 @@
     "nodemailer-sendgrid-transport": "^0.2.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "push.js": "^1.0.9",
-    "twilio": "^3.33.0",
+    "validator": "^11.1.0",
     "web-push": "^3.3.5"
   },
   "devDependencies": {
